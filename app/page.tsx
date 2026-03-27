@@ -128,7 +128,7 @@ export default function HomePage() {
 
           <a
             href="#contact"
-            className="inline-flex h-11 items-center rounded-full bg-cyan-400 px-5 text-sm font-medium text-slate-950 shadow-[0_0_22px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300"
+            className="inline-flex h-11 items-center rounded-full bg-cyan-400 px-5 text-sm font-medium text-slate-950 shadow-[0_0_22px_rgba(34,211,238,0.25)] transition duration-300 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.5)]"
           >
             Book a Call
           </a>
@@ -175,14 +175,14 @@ export default function HomePage() {
             >
               <a
                 href="#contact"
-                className="inline-flex h-14 items-center justify-center rounded-2xl bg-cyan-400 px-7 text-base font-medium text-slate-950 transition hover:bg-cyan-300"
+                className="inline-flex h-14 items-center justify-center rounded-2xl bg-cyan-400 px-7 text-base font-medium text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.25)] transition duration-300 hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.45)]"
               >
                 Book a Call
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
               <a
                 href="#services"
-                className="inline-flex h-14 items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-7 text-base text-white transition hover:bg-white/10"
+                className="inline-flex h-14 items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-7 text-base text-white transition duration-300 hover:border-cyan-400/20 hover:bg-white/10 hover:shadow-[0_0_24px_rgba(34,211,238,0.08)]"
               >
                 Explore Services
               </a>
@@ -199,7 +199,10 @@ export default function HomePage() {
                 ['Smart Websites', 'Built to position and convert'],
                 ['Review Automation', 'Turn positive service into trust'],
               ].map(([title, text]) => (
-                <div key={title} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                <div
+                  key={title}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition duration-300 hover:border-cyan-400/20 hover:bg-white/[0.07]"
+                >
                   <div className="text-sm font-medium text-cyan-300">{title}</div>
                   <div className="mt-2 text-sm leading-6 text-white/55">{text}</div>
                 </div>
@@ -222,7 +225,32 @@ export default function HomePage() {
           </a>
         </section>
 
-        <section id="services" className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <section className="relative mx-auto max-w-7xl px-6 pb-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] p-8 shadow-[0_0_35px_rgba(34,211,238,0.06)] backdrop-blur-xl lg:p-10"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_35%)]" />
+            <div className="relative">
+              <p className="text-sm uppercase tracking-[0.3em] text-cyan-300">Proven Positioning</p>
+              <h2
+                className="mt-4 max-w-3xl text-2xl font-semibold leading-tight text-white sm:text-3xl lg:text-4xl"
+                style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+              >
+                Systems Already Supporting <span className="text-cyan-300">£2M+ Revenue Brands</span>
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/65 sm:text-lg">
+                Built and deployed customer-facing AI systems designed to reduce workload, improve customer handling,
+                and create stronger online conversion opportunities.
+              </p>
+            </div>
+          </motion.div>
+        </section>
+
+        <section id="services" className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
           <SectionIntro
             eyebrow="Services"
             title="Integrated AI Systems. Modern Websites. Smarter Online Growth."
@@ -240,14 +268,19 @@ export default function HomePage() {
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ duration: 0.6, delay: index * 0.08 }}
                 >
-                  <div className="group h-full rounded-[28px] border border-white/10 bg-white/[0.04] p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] transition duration-300 hover:border-cyan-400/30 hover:bg-white/[0.06] hover:shadow-[0_0_35px_rgba(34,211,238,0.09)]">
+                  <div className="group h-full rounded-[28px] border border-white/10 bg-white/[0.04] p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/[0.06] hover:shadow-[0_0_35px_rgba(34,211,238,0.09)]">
                     <div className="flex items-center justify-between">
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
                         <Icon className="h-5 w-5" />
                       </div>
                       <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/55">{service.label}</span>
                     </div>
-                    <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em] text-white">{service.title}</h3>
+                    <h3
+                      className="mt-8 text-2xl font-semibold tracking-[-0.03em] text-white"
+                      style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+                    >
+                      {service.title}
+                    </h3>
                     <p className="mt-4 text-base leading-7 text-white/60">{service.copy}</p>
                     <div className="mt-8">{service.preview}</div>
                   </div>
@@ -257,7 +290,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="systems" className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <section id="systems" className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <SectionIntro
@@ -277,14 +310,19 @@ export default function HomePage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, amount: 0.3 }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
-                      className="rounded-3xl border border-white/10 bg-white/[0.04] p-5"
+                      className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition duration-300 hover:border-cyan-400/20 hover:bg-white/[0.05]"
                     >
                       <div className="flex items-start gap-4">
                         <div className="mt-1 flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-300">
                           <Icon className="h-5 w-5" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-medium text-white">{item.title}</h3>
+                          <h3
+                            className="text-lg font-medium text-white"
+                            style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+                          >
+                            {item.title}
+                          </h3>
                           <p className="mt-2 text-sm leading-6 text-white/60">{item.text}</p>
                         </div>
                       </div>
@@ -306,7 +344,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <section className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
           <SectionIntro
             eyebrow="Value"
             title="Built To Help Businesses Look Better, Respond Faster, And Convert More."
@@ -321,7 +359,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="rounded-[24px] border border-white/10 bg-white/[0.04] px-5 py-7 text-center text-sm font-medium leading-6 text-white/85"
+                className="rounded-[24px] border border-white/10 bg-white/[0.04] px-5 py-7 text-center text-sm font-medium leading-6 text-white/85 transition duration-300 hover:border-cyan-400/20 hover:bg-white/[0.06]"
               >
                 {result}
               </motion.div>
@@ -329,7 +367,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="contact" className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <section id="contact" className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <SectionIntro
@@ -340,13 +378,13 @@ export default function HomePage() {
               />
 
               <div className="mt-10 space-y-4 text-sm text-white/60">
-                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:border-cyan-400/20 hover:bg-white/[0.06]">
                   <Mail className="h-4 w-4 text-cyan-300" />
                   12tensystems@gmail.com
                 </div>
-                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition duration-300 hover:border-cyan-400/20 hover:bg-white/[0.06]">
                   <Bot className="h-4 w-4 text-cyan-300" />
-                  Integrated chat support can sit directly within this page
+                  Built to position businesses properly online with smarter systems
                 </div>
               </div>
             </div>
@@ -403,13 +441,13 @@ export default function HomePage() {
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={mailtoLink}
-                  className="inline-flex h-12 items-center justify-center rounded-2xl bg-cyan-400 px-6 text-sm font-medium text-slate-950 transition hover:bg-cyan-300"
+                  className="inline-flex h-12 items-center justify-center rounded-2xl bg-cyan-400 px-6 text-sm font-medium text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.22)] transition duration-300 hover:bg-cyan-300 hover:shadow-[0_0_28px_rgba(34,211,238,0.45)]"
                 >
                   Send Enquiry
                 </a>
                 <a
                   href="mailto:12tensystems@gmail.com?subject=Book%20a%20Call%20-%2012TenSystems"
-                  className="inline-flex h-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 text-sm text-white transition hover:bg-white/10"
+                  className="inline-flex h-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 text-sm text-white transition duration-300 hover:border-cyan-400/20 hover:bg-white/10"
                 >
                   Book a Call
                 </a>
@@ -497,7 +535,12 @@ function HeroVisual() {
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div>
               <div className="text-xs uppercase tracking-[0.24em] text-cyan-300">12TenSystems</div>
-              <div className="mt-2 text-xl font-semibold tracking-[-0.03em] text-white">System Preview</div>
+              <div
+                className="mt-2 text-xl font-semibold tracking-[-0.03em] text-white"
+                style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+              >
+                System Preview
+              </div>
             </div>
             <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-300">Live Interface</div>
           </div>
@@ -563,7 +606,9 @@ function MiniChatPreview() {
       <div className="text-xs uppercase tracking-[0.22em] text-cyan-300">Chat Preview</div>
       <div className="mt-4 space-y-2">
         <div className="ml-auto w-[78%] rounded-2xl rounded-br-sm bg-cyan-400/15 px-3 py-2 text-xs text-cyan-50/90">Need help with your order?</div>
-        <div className="w-[84%] rounded-2xl rounded-bl-sm bg-white/6 px-3 py-2 text-xs text-white/70">I can help with products, support, and customer questions instantly.</div>
+        <div className="w-[84%] rounded-2xl rounded-bl-sm bg-white/6 px-3 py-2 text-xs text-white/70">
+          I can help with products, support, and customer questions instantly.
+        </div>
       </div>
     </div>
   );
@@ -603,7 +648,12 @@ function SystemsPanel() {
       <div className="grid gap-4 md:grid-cols-2">
         <div className="rounded-[24px] border border-white/10 bg-[#07101d] p-5">
           <div className="text-sm text-white/50">Lead Capture</div>
-          <div className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white">Always On</div>
+          <div
+            className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white"
+            style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+          >
+            Always On
+          </div>
           <div className="mt-6 space-y-3">
             <div className="rounded-xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-sm text-cyan-50/90">Enquiries collected cleanly</div>
             <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm text-white/65">Visitors routed into better actions</div>
@@ -612,7 +662,12 @@ function SystemsPanel() {
 
         <div className="rounded-[24px] border border-white/10 bg-[#07101d] p-5">
           <div className="text-sm text-white/50">Response Layer</div>
-          <div className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white">AI Driven</div>
+          <div
+            className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white"
+            style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+          >
+            AI Driven
+          </div>
           <div className="mt-6 space-y-3">
             <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm text-white/65">Handles customer questions faster</div>
             <div className="rounded-xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-sm text-cyan-50/90">Feels smarter from first interaction</div>
@@ -624,7 +679,12 @@ function SystemsPanel() {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-sm text-white/50">System Architecture</div>
-            <div className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">Built To Support Growth</div>
+            <div
+              className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white"
+              style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+            >
+              Built To Support Growth
+            </div>
           </div>
           <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-300">Scalable</div>
         </div>
