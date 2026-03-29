@@ -387,7 +387,7 @@ export default function HomePage() {
 
               <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#050b16] p-3 opacity-80">
                 <img
-                  src="/before.png"
+                  src="https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/before.png"
                   alt="Before redesign"
                   className="w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.02]"
                 />
@@ -400,7 +400,7 @@ export default function HomePage() {
 
               <div className="relative overflow-hidden rounded-3xl border border-cyan-400/20 bg-[#050b16] p-3 shadow-[0_0_80px_rgba(34,211,238,0.12)]">
                 <img
-                  src="/after.png"
+                  src="https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/after.png"
                   alt="After redesign"
                   className="w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.03]"
                 />
@@ -759,4 +759,4 @@ function SystemsPanel() {
       </div>
     </div>
   );
-}
+} 
