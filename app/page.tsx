@@ -367,6 +367,49 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="relative mx-auto max-w-7xl px-6 py-28 lg:px-8">
+          <div className="text-center">
+            <h2
+              className="text-4xl font-semibold tracking-[-0.04em] text-white"
+              style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+            >
+              Transformation Example
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-white/60">
+              A concept redesign showing how stronger structure, clearer messaging, and a more premium visual presence
+              can reposition a construction business online.
+            </p>
+          </div>
+
+          <div className="mt-20 grid gap-12 lg:grid-cols-2">
+            <div className="group">
+              <div className="mb-4 text-sm text-white/40">Before</div>
+
+              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#050b16] p-3 opacity-80">
+                <img
+                  src="/before.png"
+                  alt="Before redesign"
+                  className="w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 pointer-events-none rounded-3xl bg-black/10" />
+              </div>
+            </div>
+
+            <div className="group">
+              <div className="mb-4 text-sm text-cyan-300">After</div>
+
+              <div className="relative overflow-hidden rounded-3xl border border-cyan-400/20 bg-[#050b16] p-3 shadow-[0_0_80px_rgba(34,211,238,0.12)]">
+                <img
+                  src="/after.png"
+                  alt="After redesign"
+                  className="w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 pointer-events-none rounded-3xl shadow-[inset_0_0_40px_rgba(34,211,238,0.05)]" />
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="contact" className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
@@ -605,7 +648,9 @@ function MiniChatPreview() {
     <div className="rounded-3xl border border-white/10 bg-[#08101d] p-4">
       <div className="text-xs uppercase tracking-[0.22em] text-cyan-300">Chat Preview</div>
       <div className="mt-4 space-y-2">
-        <div className="ml-auto w-[78%] rounded-2xl rounded-br-sm bg-cyan-400/15 px-3 py-2 text-xs text-cyan-50/90">Need help with your order?</div>
+        <div className="ml-auto w-[78%] rounded-2xl rounded-br-sm bg-cyan-400/15 px-3 py-2 text-xs text-cyan-50/90">
+          Need help with your order?
+        </div>
         <div className="w-[84%] rounded-2xl rounded-bl-sm bg-white/6 px-3 py-2 text-xs text-white/70">
           I can help with products, support, and customer questions instantly.
         </div>
@@ -636,7 +681,9 @@ function MiniReviewPreview() {
       <div className="text-xs uppercase tracking-[0.22em] text-cyan-300">Review Flow</div>
       <div className="mt-4 space-y-2">
         <div className="rounded-2xl bg-white/6 px-3 py-2 text-xs text-white/70">Customer feedback captured</div>
-        <div className="rounded-2xl bg-cyan-400/15 px-3 py-2 text-xs text-cyan-50/90">Positive response routed into review request</div>
+        <div className="rounded-2xl bg-cyan-400/15 px-3 py-2 text-xs text-cyan-50/90">
+          Positive response routed into review request
+        </div>
       </div>
     </div>
   );
@@ -655,8 +702,12 @@ function SystemsPanel() {
             Always On
           </div>
           <div className="mt-6 space-y-3">
-            <div className="rounded-xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-sm text-cyan-50/90">Enquiries collected cleanly</div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm text-white/65">Visitors routed into better actions</div>
+            <div className="rounded-xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-sm text-cyan-50/90">
+              Enquiries collected cleanly
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm text-white/65">
+              Visitors routed into better actions
+            </div>
           </div>
         </div>
 
@@ -669,8 +720,12 @@ function SystemsPanel() {
             AI Driven
           </div>
           <div className="mt-6 space-y-3">
-            <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm text-white/65">Handles customer questions faster</div>
-            <div className="rounded-xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-sm text-cyan-50/90">Feels smarter from first interaction</div>
+            <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm text-white/65">
+              Handles customer questions faster
+            </div>
+            <div className="rounded-xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-sm text-cyan-50/90">
+              Feels smarter from first interaction
+            </div>
           </div>
         </div>
       </div>
@@ -686,7 +741,9 @@ function SystemsPanel() {
               Built To Support Growth
             </div>
           </div>
-          <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-300">Scalable</div>
+          <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-300">
+            Scalable
+          </div>
         </div>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
