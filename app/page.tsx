@@ -15,8 +15,14 @@ import {
   Star,
   User,
   Workflow,
+  X,
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+const BEFORE_IMAGE =
+  'https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/before.png';
+const AFTER_IMAGE =
+  'https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/after.png';
 
 export default function HomePage() {
   const [form, setForm] = useState({
@@ -375,6 +381,7 @@ export default function HomePage() {
             >
               Transformation Example
             </h2>
+            <p className="mt-4 text-lg text-cyan-300/90">Out with the old. In with the new.</p>
             <p className="mt-4 max-w-2xl mx-auto text-white/60 sm:text-lg">
               A concept redesign showing how stronger structure, clearer messaging, and a more premium visual presence
               can reposition a construction business online.
@@ -382,7 +389,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-16">
-            <BeforeAfterShowcase />
+            <BeforeAfterCaseStudy />
           </div>
         </section>
 
@@ -737,81 +744,228 @@ function SystemsPanel() {
   );
 }
 
-function BeforeAfterShowcase() {
-  const [slider, setSlider] = useState(58);
+function BeforeAfterCaseStudy() {
+  const [active, setActive] = useState<'before' | 'after' | null>(null);
 
   return (
-    <div className="relative mx-auto max-w-5xl">
-      <div className="absolute inset-0 rounded-[32px] bg-cyan-400/10 blur-3xl" />
+    <>
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+        <PreviewCard
+          label="Before"
+          title="The old site"
+          image={BEFORE_IMAGE}
+          accent="neutral"
+          onClick={() => setActive('before')}
+        />
+        <PreviewCard
+          label="After"
+          title="The redesigned direction"
+          image={AFTER_IMAGE}
+          accent="cyan"
+          onClick={() => setActive('after')}
+        />
+      </div>
 
-      <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#050b16] p-3 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-white/10 bg-[#02050b]">
-          <img
-            src="https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/before.png"
-            alt="Before redesign"
-            className="absolute inset-0 h-full w-full object-cover object-top"
-          />
-
-          <div
-            className="absolute inset-y-0 left-0 overflow-hidden"
-            style={{ width: `${slider}%` }}
+      <div className="mx-auto mt-8 flex max-w-5xl flex-col items-start justify-between gap-5 rounded-[28px] border border-white/10 bg-white/[0.04] p-6 sm:flex-row sm:items-center">
+        <div>
+          <p
+            className="text-2xl font-semibold tracking-[-0.03em] text-white"
+            style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
           >
-            <img
-              src="https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/after.png"
-              alt="After redesign"
-              className="absolute inset-0 h-full w-full object-cover object-top"
-            />
-          </div>
-
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.35),transparent_30%)]" />
-
-          <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/45 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-white/85 backdrop-blur-md">
-            Before
-          </div>
-
-          <div className="absolute right-4 top-4 rounded-full border border-cyan-400/20 bg-cyan-400/15 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-cyan-200 backdrop-blur-md">
-            After
-          </div>
-
-          <div
-            className="absolute inset-y-0 z-20"
-            style={{ left: `${slider}%`, transform: 'translateX(-50%)' }}
-          >
-            <div className="relative h-full w-[2px] bg-white/70">
-              <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white shadow-[0_0_30px_rgba(34,211,238,0.15)] backdrop-blur-md">
-                <span className="text-lg">↔</span>
-              </div>
-            </div>
-          </div>
-
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={slider}
-            onChange={(e) => setSlider(Number(e.target.value))}
-            className="absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0"
-            aria-label="Before and after slider"
-          />
+            AWL Construction Concept Redesign
+          </p>
+          <p className="mt-2 max-w-3xl text-sm leading-7 text-white/55 sm:text-base">
+            From a dated, text-heavy site to a more structured, premium digital presence with clearer hierarchy,
+            stronger project presentation, and improved visual credibility.
+          </p>
         </div>
 
-        <div className="flex flex-col gap-4 px-2 pb-2 pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p
-              className="text-xl font-semibold tracking-[-0.03em] text-white"
-              style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
-            >
-              AWL Construction Concept Redesign
-            </p>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-white/55 sm:text-base">
-              From a dated, text-heavy site to a more structured, premium digital presence with clearer hierarchy,
-              stronger project presentation, and improved visual credibility.
-            </p>
+        <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">
+          Click either preview to explore
+        </div>
+      </div>
+
+      {active && (
+        <ScrollingPreviewModal
+          title={active === 'before' ? 'Before — Full Page Preview' : 'After — Full Page Preview'}
+          image={active === 'before' ? BEFORE_IMAGE : AFTER_IMAGE}
+          onClose={() => setActive(null)}
+        />
+      )}
+    </>
+  );
+}
+
+function PreviewCard({
+  label,
+  title,
+  image,
+  accent,
+  onClick,
+}: {
+  label: string;
+  title: string;
+  image: string;
+  accent: 'neutral' | 'cyan';
+  onClick: () => void;
+}) {
+  const accentClasses =
+    accent === 'cyan'
+      ? 'border-cyan-400/20 shadow-[0_0_60px_rgba(34,211,238,0.08)]'
+      : 'border-white/10';
+
+  const pillClasses =
+    accent === 'cyan'
+      ? 'border-cyan-400/20 bg-cyan-400/10 text-cyan-200'
+      : 'border-white/10 bg-black/35 text-white/85';
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`group relative overflow-hidden rounded-[30px] border bg-[#050b16] p-3 text-left transition duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:shadow-[0_0_70px_rgba(34,211,238,0.12)] ${accentClasses}`}
+    >
+      <div className="rounded-[24px] border border-white/10 bg-[#09111e]">
+        <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+            <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+            <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+          </div>
+          <div className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-1 text-[11px] uppercase tracking-[0.24em] text-white/45">
+            Homepage Preview
+          </div>
+        </div>
+
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(3,6,13,0.8),transparent_40%,rgba(3,6,13,0.18))]" />
+
+          <div className={`absolute left-4 top-4 rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] backdrop-blur-md ${pillClasses}`}>
+            {label}
           </div>
 
-          <div className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/65">
-            Drag to compare
+          <div className="absolute bottom-4 left-4 right-4">
+            <p
+              className="text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl"
+              style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+            >
+              {title}
+            </p>
+            <p className="mt-2 text-sm text-white/60">Click to open a full-page scrolling preview.</p>
           </div>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+function ScrollingPreviewModal({
+  title,
+  image,
+  onClose,
+}: {
+  title: string;
+  image: string;
+  onClose: () => void;
+}) {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleEsc);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!loaded || !scrollRef.current) return;
+
+    const el = scrollRef.current;
+    el.scrollTo({ top: 0, behavior: 'auto' });
+
+    let frame = 0;
+    let raf = 0;
+    let lastTime = 0;
+    const speed = 0.18;
+
+    const animate = (time: number) => {
+      if (!el) return;
+      if (!lastTime) lastTime = time;
+      const delta = time - lastTime;
+      lastTime = time;
+
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      if (maxScroll <= 0) return;
+
+      el.scrollTop += delta * speed;
+
+      if (el.scrollTop < maxScroll) {
+        raf = requestAnimationFrame(animate);
+      } else {
+        frame = window.setTimeout(() => {
+          el.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1200);
+      }
+    };
+
+    const starter = window.setTimeout(() => {
+      raf = requestAnimationFrame(animate);
+    }, 500);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(frame);
+      clearTimeout(starter);
+    };
+  }, [loaded]);
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#02050b]/82 p-4 backdrop-blur-lg">
+      <div className="absolute inset-0" onClick={onClose} />
+
+      <div className="relative z-10 flex h-[88vh] w-full max-w-6xl flex-col overflow-hidden rounded-[32px] border border-white/10 bg-[#050b16] shadow-[0_0_100px_rgba(34,211,238,0.12)]">
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 sm:px-6">
+          <div>
+            <p
+              className="text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl"
+              style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+            >
+              {title}
+            </p>
+            <p className="mt-1 text-sm text-white/50">Auto-scrolling full-page preview</p>
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition hover:border-cyan-400/20 hover:bg-white/[0.08] hover:text-white"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="relative flex-1 overflow-y-auto bg-[#02050b]"
+        >
+          <img
+            src={image}
+            alt={title}
+            onLoad={() => setLoaded(true)}
+            className="block w-full"
+          />
         </div>
       </div>
     </div>
