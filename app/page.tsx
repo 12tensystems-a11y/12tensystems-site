@@ -819,8 +819,15 @@ function WebsiteBoardCard({
       ? 'border-cyan-400/20 bg-cyan-400/12 text-cyan-200'
       : 'border-white/10 bg-black/35 text-white/85';
 
+  const imageShift =
+    accent === 'cyan'
+      ? 'group-hover:-translate-y-[22%]'
+      : 'group-hover:-translate-y-[14%]';
+
   return (
-    <div className={`group rounded-[30px] border bg-[#06101d] p-4 transition duration-300 hover:-translate-y-1 ${outerBorder}`}>
+    <div
+      className={`group rounded-[30px] border bg-[#06101d] p-4 transition duration-300 hover:-translate-y-1 ${outerBorder}`}
+    >
       <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#09111e]">
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
           <div className="flex items-center gap-2">
@@ -834,12 +841,15 @@ function WebsiteBoardCard({
         </div>
 
         <div className="relative h-[560px] overflow-hidden bg-[#d7d4ca]">
-          <img
-            src={image}
-            alt={title}
-            className="w-full object-cover object-top transition duration-500 group-hover:scale-[1.015]"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(6,16,29,0.55),transparent_28%)]" />
+          <div className="absolute inset-0 overflow-hidden">
+            <img
+              src={image}
+              alt={title}
+              className={`block h-auto w-full object-top transition-transform duration-[7000ms] ease-out ${imageShift}`}
+            />
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(6,16,29,0.70),rgba(6,16,29,0.08)_35%,transparent_58%)]" />
 
           <div className={`absolute left-5 top-5 rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] backdrop-blur-md ${labelClasses}`}>
             {label}
