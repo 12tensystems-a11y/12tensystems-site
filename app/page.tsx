@@ -370,43 +370,19 @@ export default function HomePage() {
         <section className="relative mx-auto max-w-7xl px-6 py-28 lg:px-8">
           <div className="text-center">
             <h2
-              className="text-4xl font-semibold tracking-[-0.04em] text-white"
+              className="text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl"
               style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
             >
               Transformation Example
             </h2>
-            <p className="mt-4 max-w-2xl mx-auto text-white/60">
+            <p className="mt-4 max-w-2xl mx-auto text-white/60 sm:text-lg">
               A concept redesign showing how stronger structure, clearer messaging, and a more premium visual presence
               can reposition a construction business online.
             </p>
           </div>
 
-          <div className="mt-20 grid gap-12 lg:grid-cols-2">
-            <div className="group">
-              <div className="mb-4 text-sm text-white/40">Before</div>
-
-              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#050b16] p-3 opacity-80">
-                <img
-                  src="https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/before.png"
-                  alt="Before redesign"
-                  className="w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.02]"
-                />
-                <div className="absolute inset-0 pointer-events-none rounded-3xl bg-black/10" />
-              </div>
-            </div>
-
-            <div className="group">
-              <div className="mb-4 text-sm text-cyan-300">After</div>
-
-              <div className="relative overflow-hidden rounded-3xl border border-cyan-400/20 bg-[#050b16] p-3 shadow-[0_0_80px_rgba(34,211,238,0.12)]">
-                <img
-                  src="https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/after.png"
-                  alt="After redesign"
-                  className="w-full rounded-xl object-cover transition duration-500 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 pointer-events-none rounded-3xl shadow-[inset_0_0_40px_rgba(34,211,238,0.05)]" />
-              </div>
-            </div>
+          <div className="mt-16">
+            <BeforeAfterShowcase />
           </div>
         </section>
 
@@ -759,4 +735,85 @@ function SystemsPanel() {
       </div>
     </div>
   );
-} 
+}
+
+function BeforeAfterShowcase() {
+  const [slider, setSlider] = useState(58);
+
+  return (
+    <div className="relative mx-auto max-w-5xl">
+      <div className="absolute inset-0 rounded-[32px] bg-cyan-400/10 blur-3xl" />
+
+      <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#050b16] p-3 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-white/10 bg-[#02050b]">
+          <img
+            src="https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/before.png"
+            alt="Before redesign"
+            className="absolute inset-0 h-full w-full object-cover object-top"
+          />
+
+          <div
+            className="absolute inset-y-0 left-0 overflow-hidden"
+            style={{ width: `${slider}%` }}
+          >
+            <img
+              src="https://raw.githubusercontent.com/12tensystems-a11y/12tensystems-site/main/after.png"
+              alt="After redesign"
+              className="absolute inset-0 h-full w-full object-cover object-top"
+            />
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.35),transparent_30%)]" />
+
+          <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/45 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-white/85 backdrop-blur-md">
+            Before
+          </div>
+
+          <div className="absolute right-4 top-4 rounded-full border border-cyan-400/20 bg-cyan-400/15 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-cyan-200 backdrop-blur-md">
+            After
+          </div>
+
+          <div
+            className="absolute inset-y-0 z-20"
+            style={{ left: `${slider}%`, transform: 'translateX(-50%)' }}
+          >
+            <div className="relative h-full w-[2px] bg-white/70">
+              <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white shadow-[0_0_30px_rgba(34,211,238,0.15)] backdrop-blur-md">
+                <span className="text-lg">↔</span>
+              </div>
+            </div>
+          </div>
+
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={slider}
+            onChange={(e) => setSlider(Number(e.target.value))}
+            className="absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0"
+            aria-label="Before and after slider"
+          />
+        </div>
+
+        <div className="flex flex-col gap-4 px-2 pb-2 pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p
+              className="text-xl font-semibold tracking-[-0.03em] text-white"
+              style={{ fontFamily: 'Space Grotesk, Sora, sans-serif' }}
+            >
+              AWL Construction Concept Redesign
+            </p>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-white/55 sm:text-base">
+              From a dated, text-heavy site to a more structured, premium digital presence with clearer hierarchy,
+              stronger project presentation, and improved visual credibility.
+            </p>
+          </div>
+
+          <div className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/65">
+            Drag to compare
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
