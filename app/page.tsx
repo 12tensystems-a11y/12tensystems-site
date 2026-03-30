@@ -819,16 +819,11 @@ function WebsiteBoardCard({
       ? 'border-cyan-400/20 bg-cyan-400/12 text-cyan-200'
       : 'border-white/10 bg-black/35 text-white/85';
 
-  const imageShift =
-    accent === 'cyan'
-      ? 'group-hover:-translate-y-[22%]'
-      : 'group-hover:-translate-y-[14%]';
-
   return (
     <div
-      className={`group rounded-[30px] border bg-[#06101d] p-4 transition duration-300 hover:-translate-y-1 ${outerBorder}`}
+      className={`group rounded-[30px] border bg-[#06101d] p-6 transition duration-300 hover:-translate-y-1 ${outerBorder}`}
     >
-      <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#09111e]">
+      <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#09111e] shadow-[0_20px_50px_rgba(0,0,0,0.28)]">
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
@@ -840,22 +835,24 @@ function WebsiteBoardCard({
           </div>
         </div>
 
-        <div className="relative h-[560px] overflow-hidden bg-[#d7d4ca]">
-          <div className="absolute inset-0 overflow-hidden">
+        <div className="relative overflow-hidden rounded-b-[24px] bg-[#0b1220] p-3">
+          <div className="overflow-hidden rounded-[18px] border border-white/10 bg-black">
             <img
               src={image}
               alt={title}
-              className={`block h-auto w-full object-top transition-transform duration-[7000ms] ease-out ${imageShift}`}
+              className="block h-auto w-full object-contain transition duration-500 group-hover:scale-[1.01]"
             />
           </div>
 
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(6,16,29,0.70),rgba(6,16,29,0.08)_35%,transparent_58%)]" />
+          <div className="pointer-events-none absolute inset-x-3 bottom-3 h-40 rounded-b-[18px] bg-[linear-gradient(to_top,rgba(6,16,29,0.78),rgba(6,16,29,0.18)_42%,transparent_100%)]" />
 
-          <div className={`absolute left-5 top-5 rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] backdrop-blur-md ${labelClasses}`}>
+          <div
+            className={`absolute left-8 top-8 rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] backdrop-blur-md ${labelClasses}`}
+          >
             {label}
           </div>
 
-          <div className="absolute bottom-5 left-5 right-5">
+          <div className="absolute bottom-8 left-8 right-8">
             <div className="inline-flex rounded-full border border-white/10 bg-black/35 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-white/55 backdrop-blur-md">
               Homepage Direction
             </div>
